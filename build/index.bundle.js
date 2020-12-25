@@ -3099,6 +3099,7 @@ var forms = document.body.querySelectorAll('[data-form]');
 console.log(forms, 'forms');
 
 var inputError = function inputError(input) {
+  input.value = "";
   var nextElementSiblingEl = input.nextElementSibling;
   var error = input.parentNode.parentNode.querySelector('.error-msg');
   error.classList.remove('hidden');
@@ -3119,10 +3120,10 @@ forms.forEach(function (form) {
   var results = document.getElementById('results');
   var formElements = [nameInput, dayInput, yearInput, monthInput];
   var myInterval = false;
-  var getName = urlParams.get('name');
-  var getMonth = urlParams.get('month');
-  var getYear = urlParams.get('year');
-  var getDay = urlParams.get('day');
+  var getName = purify.sanitize(urlParams.get('name'));
+  var getMonth = purify.sanitize(urlParams.get('month'));
+  var getYear = purify.sanitize(urlParams.get('year'));
+  var getDay = purify.sanitize(urlParams.get('day'));
 
   if (getName) {
     nameInput.value = getName;
@@ -3224,11 +3225,13 @@ forms.forEach(function (form) {
       myInterval = setInterval(function () {
         var now = moment();
         var difference = now.diff(yearOfBirth);
+        document.body.querySelector('[data-results-milliseconds]').innerText = parseFloat(Math.floor(moment.duration(difference).as('milliseconds'))).toLocaleString('en');
         document.body.querySelector('[data-results-seconds]').innerText = parseFloat(Math.floor(moment.duration(difference).as('seconds'))).toLocaleString('en');
         document.body.querySelector('[data-results-minutes]').innerText = parseFloat(Math.floor(moment.duration(difference).as('minutes'))).toLocaleString('en');
         document.body.querySelector('[data-results-hours]').innerText = parseFloat(Math.floor(moment.duration(difference).as('hours'))).toLocaleString('en');
         document.body.querySelector('[data-results-days]').innerText = parseFloat(Math.floor(moment.duration(difference).as('days'))).toLocaleString('en');
-      }, 1000);
+      }, 100);
+      document.body.querySelector('[data-results-milliseconds]').innerText = parseFloat(Math.floor(moment.duration(difference).as('milliseconds'))).toLocaleString('en');
       document.body.querySelector('[data-results-seconds]').innerText = parseFloat(Math.floor(moment.duration(difference).as('seconds'))).toLocaleString('en');
       document.body.querySelector('[data-results-minutes]').innerText = parseFloat(Math.floor(moment.duration(difference).as('minutes'))).toLocaleString('en');
       document.body.querySelector('[data-results-hours]').innerText = parseFloat(Math.floor(moment.duration(difference).as('hours'))).toLocaleString('en');
