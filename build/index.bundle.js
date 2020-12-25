@@ -3255,7 +3255,24 @@ forms.forEach(function (form) {
       // alert(duration.years());
 
       console.log(document.URL, 'document.URL');
-      document.body.querySelector('[data-tweet]').innerHTML = "<a href=\"https://twitter.com/share\" class=\"twitter-share-button\"{count} data-url=\"".concat(document.URL, "\" data-via=\"bluetidepro\" data-related=\"bluetidepro\" data-text=\"").concat(name, " has been #AliveSince ").concat(yearOfBirth.format("dddd, MMMM Do, YYYY"), "! Find out how that breaks down...\">Tweet</a>");
+      document.body.querySelector('[data-tweet]').innerHTML = "<a href=\"https://twitter.com/share\" class=\"twitter-share-button\" data-url=\"".concat(document.URL, "\" data-via=\"bluetidepro\" data-related=\"bluetidepro\" data-text=\"").concat(name, " has been #AliveSince ").concat(yearOfBirth.format("dddd, MMMM Do, YYYY"), "! Find out how that breaks down...\">Tweet</a>"); // const loadGoogleMaps = (callback) => {
+
+      console.log('loadGoogleMaps');
+      var existingScript = document.getElementById('twitterJs');
+      console.log(existingScript, 'existingScript');
+
+      if (existingScript) {
+        existingScript.remove();
+      }
+
+      var script = document.createElement('script');
+      script.src = 'https://platform.twitter.com/widgets.js';
+      script.id = 'twitterJs';
+      document.body.appendChild(script); // script.onload = () => {
+      // 	if (callback) callback()
+      // }
+      // if (existingScript && callback) callback()
+      // }
     }
 
     console.log('--------------');
