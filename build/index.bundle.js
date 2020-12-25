@@ -3092,11 +3092,7 @@ var purify = createDOMPurify();
 
 var startUrl = url.parse(window.location.href, true);
 var urlParams = new URLSearchParams(startUrl.search);
-console.log(startUrl, 'startUrl'); // console.log(escape(urlParams), 'urlParams2 escape')
-// console.log(DOMPurify.sanitize(urlParams), 'DOMPurify escape')
-
 var forms = document.body.querySelectorAll('[data-form]');
-console.log(forms, 'forms');
 
 var inputError = function inputError(input) {
   input.value = "";
@@ -3106,12 +3102,11 @@ var inputError = function inputError(input) {
   error.classList.add('block');
   nextElementSiblingEl.classList.remove('hidden');
   nextElementSiblingEl.classList.add('flex');
-  input.classList.remove('focus:ring-indigo-500', 'focus:border-indigo-500');
+  input.classList.remove('focus:ring-indigo-500', 'focus:border-indigo-500', 'border-gray-300');
   input.classList.add('border-red-300', 'text-red-900', 'placeholder-red-300', 'focus:ring-red-500', 'focus:border-red-500', 'dirty');
 };
 
 forms.forEach(function (form) {
-  console.log(form, 'form');
   var submitBtn = form.querySelector('[data-submit-input]');
   var nameInput = form.querySelector('[data-name-input]');
   var dayInput = form.querySelector('[data-day-input]');
@@ -3157,12 +3152,14 @@ forms.forEach(function (form) {
     }
 
     if (isEmpty(name)) {
+      urlParams.set('name', '');
       console.log('Name or about field is empty');
       valid = false;
       inputError(nameInput);
     }
 
     if (isEmpty(month)) {
+      urlParams.set('month', '');
       console.log('month is empty');
       valid = false;
       inputError(monthInput);
@@ -3174,20 +3171,15 @@ forms.forEach(function (form) {
         day = '0' + day;
       } else {
         console.log('day wrong');
+        urlParams.set('day', '');
         valid = false;
         inputError(dayInput);
       }
-    } // console.log(Number(year) > new Date().getFullYear(), 'Number(year) > new Date().getFullYear()')
-    // console.log(new Date().getFullYear(), 'new Date().getFullYear()')
-    // console.log(Number(year), 'Number(year)')
-    // console.log(year.length, 'year.length')
-    // console.log(year, 'year')
-    // console.log(isEmpty(year), 'isEmpty(year)')
-    // console.log(isNumeric(year), 'isNumeric(year)')
-
+    }
 
     if (isEmpty(year) || !isNumeric(year) || year.length !== 4 || Number(year) > new Date().getFullYear()) {
       console.log('year wrong');
+      urlParams.set('year', '');
       valid = false;
       inputError(yearInput);
     }
@@ -3199,7 +3191,6 @@ forms.forEach(function (form) {
       urlParams.set('month', month);
       urlParams.set('year', year);
       urlParams.set('day', day);
-      window.history.replaceState({}, '', "".concat(startUrl.pathname, "?").concat(urlParams));
       document.body.querySelector('[data-results-nickname]').innerText = name;
       console.log(month, 'month2');
       console.log(year, 'year2');
@@ -3219,9 +3210,7 @@ forms.forEach(function (form) {
       console.log(parseFloat(Math.floor(moment.duration(difference).as('days'))).toLocaleString('en'), 'days');
       console.log(parseFloat(Math.floor(moment.duration(difference).as('weeks'))).toLocaleString('en'), 'weeks');
       console.log(parseFloat(Math.floor(moment.duration(difference).as('months'))).toLocaleString('en'), 'months');
-      console.log(parseFloat(Math.floor(moment.duration(difference).as('years'))).toLocaleString('en'), 'years'); // console.log(Number(moment.duration(difference).as('years')), 'years')
-      // console.log(Number(moment.duration(difference).as('years')) / 7, 'years')
-
+      console.log(parseFloat(Math.floor(moment.duration(difference).as('years'))).toLocaleString('en'), 'years');
       myInterval = setInterval(function () {
         var now = moment();
         var difference = now.diff(yearOfBirth);
@@ -3251,15 +3240,9 @@ forms.forEach(function (form) {
       var myAgeInDogYears = earlyYears + laterYears;
       document.body.querySelector('[data-results-dog-years]').innerText = parseFloat(Math.floor(myAgeInDogYears)).toLocaleString('en'); // Displaying my name and age in dog years
 
-      console.log("I am ".concat(myAgeInDogYears, " years old in dog years.")); // Now you can format duration object as you want to, see the docs
-      // alert(duration.years());
-
-      console.log(document.URL, 'document.URL');
-      document.body.querySelector('[data-tweet]').innerHTML = "<a href=\"https://twitter.com/share\" class=\"twitter-share-button\" data-url=\"".concat(document.URL, "\" data-via=\"bluetidepro\" data-related=\"bluetidepro\" data-text=\"").concat(name, " has been #AliveSince ").concat(yearOfBirth.format("dddd, MMMM Do, YYYY"), "! Find out how that breaks down...\">Tweet</a>"); // const loadGoogleMaps = (callback) => {
-
-      console.log('loadGoogleMaps');
+      console.log("I am ".concat(myAgeInDogYears, " years old in dog years."));
+      document.body.querySelector('[data-tweet]').innerHTML = "<a href=\"https://twitter.com/share\" class=\"twitter-share-button\" data-url=\"".concat(document.URL, "\" data-via=\"bluetidepro\" data-related=\"bluetidepro\" data-text=\"").concat(name, " has been #AliveSince ").concat(yearOfBirth.format("dddd, MMMM Do, YYYY"), "! Find out how that breaks down...\">Tweet</a>");
       var existingScript = document.getElementById('twitterJs');
-      console.log(existingScript, 'existingScript');
 
       if (existingScript) {
         existingScript.remove();
@@ -3268,14 +3251,10 @@ forms.forEach(function (form) {
       var script = document.createElement('script');
       script.src = 'https://platform.twitter.com/widgets.js';
       script.id = 'twitterJs';
-      document.body.appendChild(script); // script.onload = () => {
-      // 	if (callback) callback()
-      // }
-      // if (existingScript && callback) callback()
-      // }
+      document.body.appendChild(script);
     }
 
-    console.log('--------------');
+    window.history.replaceState({}, '', "".concat(startUrl.pathname, "?").concat(urlParams));
     return false;
   });
 
@@ -3292,6 +3271,7 @@ forms.forEach(function (form) {
 
       if (isDirty) {
         classes.remove('border-red-300', 'text-red-900', 'placeholder-red-300', 'focus:ring-red-500', 'focus:border-red-500', 'dirty');
+        classes.add('focus:ring-indigo-500', 'focus:border-indigo-500', 'border-gray-300');
         var nextElementSiblingEl = target.nextElementSibling;
         var error = target.parentNode.parentNode.querySelector('.error-msg');
         error.classList.remove('block');
