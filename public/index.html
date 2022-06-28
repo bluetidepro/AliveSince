@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  <link rel="stylesheet" href="/build/tailwind.css">
+  <title>AliveSince</title>
+</head>
+<body class="antialiased">
+  <div class="min-h-screen bg-gray-50 flex flex-col justify-center py-12 px-6">
+    <header class="sm:mx-auto sm:w-full sm:max-w-2xl">
+      <!-- <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow"> -->
+      <h1 class="mt-6 text-center text-4xl font-extrabold text-gray-900">AliveSince</h1>
+    </header>
+
+    <section class="mt-8 sm:mx-auto sm:w-full sm:max-w-2xl">
+      <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+        <form action="" method="POST" data-form>
+          <div class="mb-6">
+            <label for="name" class="block text-sm font-medium text-gray-900">
+              Enter Your Name // Nickname // Etc.
+            </label>
+            <div class="mt-2 relative rounded-md">
+              <input data-name-input id="name" name="name" type="text" autocomplete="nickname" class="appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none sm:text-sm border-gray-300">
+              <div class="hidden absolute inset-y-0 right-0 pr-3 items-center pointer-events-none"><svg class="h-5 w-5 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" /></svg></div>
+            </div>
+            <p class="mt-2 text-sm text-red-600 hidden error-msg">Please enter a name/nickname.</p>
+          </div>
+
+          <label class="block text-sm font-medium text-gray-900 mb-3">Enter Your Birthday</label>
+
+          <div class="md:flex mb-6">
+            <div class="flex-grow w-full mb-4 md:mb-0">
+              <label for="month" class="block text-sm font-medium text-gray-500">Month</label>
+              <select data-month-input id="month" name="month" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                <option selected value="01">January</option>
+                <option value="02">February</option>
+                <option value="03">March</option>
+                <option value="04">April</option>
+                <option value="05">May</option>
+                <option value="06">June</option>
+                <option value="07">July</option>
+                <option value="08">August</option>
+                <option value="09">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+              </select>
+            </div>
+
+            <div class="w-full md:mx-7 mb-4 md:mb-0">
+              <label for="day" class="block text-sm font-medium text-gray-500">
+                Day
+              </label>
+              <div class="mt-1 relative rounded-md">
+                <input data-day-input id="day" name="day" type="text" placeholder="01" maxlength="2" autocomplete="bday-day" class="appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none sm:text-sm border-gray-300 focus:ring-indigo-500 focus:border-indigo-500">
+                <div class="hidden absolute inset-y-0 right-0 pr-3 items-center pointer-events-none"><svg class="h-5 w-5 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" /></svg></div>
+              </div>
+              <p class="mt-2 text-sm text-red-600 hidden error-msg">Please enter day.</p>
+            </div>
+
+            <div class="w-full">
+              <label for="year" class="block text-sm font-medium text-gray-500">
+                Year
+              </label>
+              <div class="mt-1 relative rounded-md">
+                <input data-year-input id="year" name="year" type="text" placeholder="1989" maxlength="4" autocomplete="bday-year" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <div class="hidden absolute inset-y-0 right-0 pr-3 items-center pointer-events-none"><svg class="h-5 w-5 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" /></svg></div>
+              </div>
+              <p class="mt-2 text-sm text-red-600 hidden error-msg">Please enter a year.</p>
+            </div>
+          </div>
+
+          <div>
+            <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" data-submit-input>Calculate</button>
+          </div>
+        </form>
+
+        <div class="mt-6 hidden" id="results">
+          <div class="w-full border-t border-gray-300 mb-6"></div>
+          <div>
+            <p class="text-center text-2xl text-gray-600 max-w px-8"><strong data-results-nickname></strong> has been <strong>alive since</strong> <span data-results-date></span>!</p>
+            <div class="mx-auto text-center mt-6" data-tweet>
+            </div>
+          </div>
+
+          <div class="relative my-6">
+            <div class="absolute inset-0 flex items-center">
+              <div class="w-full border-t border-gray-300"></div>
+            </div>
+            <div class="relative flex justify-center text-sm">
+              <span class="px-2 bg-white text-gray-500">Let's break that down more</span>
+            </div>
+          </div>
+
+          <div class="mx-auto overflow-hidden px-8">
+            <dl class="-mx-8 -mt-8 sm:flex items-center text-center justify-center flex-wrap">
+              <div class="flex flex-col px-8 pt-8">
+                <dt class="order-2 text-base font-medium text-gray-500">Milliseconds</dt>
+                <dd class="order-1 text-2xl font-extrabold text-indigo-600 sm:text-3xl" data-results-milliseconds></dd>
+              </div>
+              <div class="flex flex-col px-8 pt-8">
+                <dt class="order-2 text-base font-medium text-gray-500">Seconds</dt>
+                <dd class="order-1 text-2xl font-extrabold text-indigo-600 sm:text-3xl" data-results-seconds></dd>
+              </div>
+              <div class="flex flex-col px-8 pt-8">
+                <dt class="order-2 text-base font-medium text-gray-500">Minutes</dt>
+                <dd class="order-1 text-2xl font-extrabold text-indigo-600 sm:text-3xl" data-results-minutes></dd>
+              </div>
+              <div class="flex flex-col px-8 pt-8">
+                <dt class="order-2 text-base font-medium text-gray-500">Hours</dt>
+                <dd class="order-1 text-2xl font-extrabold text-indigo-600 sm:text-3xl" data-results-hours></dd>
+              </div>
+              <div class="flex flex-col px-8 pt-8">
+                <dt class="order-2 text-base font-medium text-gray-500">Days</dt>
+                <dd class="order-1 text-2xl font-extrabold text-indigo-600 sm:text-3xl" data-results-days></dd>
+              </div>
+              <div class="flex flex-col px-8 pt-8">
+                <dt class="order-2 text-base font-medium text-gray-500">Weeks</dt>
+                <dd class="order-1 text-2xl font-extrabold text-indigo-600 sm:text-3xl" data-results-weeks></dd>
+              </div>
+              <div class="flex flex-col px-8 pt-8">
+                <dt class="order-2 text-base font-medium text-gray-500">Months</dt>
+                <dd class="order-1 text-2xl font-extrabold text-indigo-600 sm:text-3xl" data-results-months></dd>
+              </div>
+              <div class="flex flex-col px-8 pt-8">
+                <dt class="order-2 text-base font-medium text-gray-500">Years</dt>
+                <dd class="order-1 text-2xl font-extrabold text-indigo-600 sm:text-3xl" data-results-years></dd>
+              </div>
+              <div class="flex flex-col px-8 pt-8">
+                <dt class="order-2 text-base font-medium text-gray-500">Dog Years</dt>
+                <dd class="order-1 text-2xl font-extrabold text-indigo-600 sm:text-3xl" data-results-dog-years></dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="sm:mx-auto sm:w-full sm:max-w-2xl mt-8">
+      <p class="text-center text-md text-gray-600 max-w px-8 mb-3">Made with love by <a href="http://iamzachreed.com/" title="Zach Reed" target="_blank" class="text-indigo-600 hover:text-indigo-800">Zach Reed</a> ❤️</p>
+      <p class="text-center text-md text-gray-600 max-w px-8"><a href="https://www.shrugdude.com/" title="ShrugDude" target="_blank" class="hover:text-indigo-800">¯\_(ツ)_/¯</a></p>
+    </footer>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
+  <script src="/build/index.bundle.js"></script>
+</body>
+</html>
